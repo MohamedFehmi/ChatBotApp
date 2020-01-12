@@ -34,5 +34,7 @@
 	<string>ChatBotApp</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The Bot needs access to your photos so you can send photos to the Bot Service and get answers based on them.</string>
 </dict>
 </plist>
