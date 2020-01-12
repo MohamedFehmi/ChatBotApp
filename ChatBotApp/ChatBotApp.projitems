@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Helpers\BotServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Conversation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
