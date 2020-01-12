@@ -22,15 +22,34 @@ namespace ChatBotApp.ViewModel.Helpers
         {
             string endpoint = "/v3/directline/conversations";
 
-            using HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://directline.botframework.com");
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer 5_H3d9CT8JY.3IdaA1U9fh8OtDswkowQ69kXDrBeYA1YceLrcUfbT3g");
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://directline.botframework.com");
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer 5_H3d9CT8JY.3IdaA1U9fh8OtDswkowQ69kXDrBeYA1YceLrcUfbT3g");
 
-            var response = await client.PostAsync(endpoint, null);
+                var response = await client.PostAsync(endpoint, null);
 
-            string json = await response.Content.ReadAsStringAsync();
+                string json = await response.Content.ReadAsStringAsync();
 
-            _Conversation = JsonConvert.DeserializeObject<Conversation>(json);
+                _Conversation = JsonConvert.DeserializeObject<Conversation>(json);
+            }
+        }
+
+        public async Task SendActivityAsync(string Message)
+        {
+            string endpoint = $"/v3/directline/conversations/{_Conversation.ConversationId}/activities";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://directline.botframework.com");
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer 5_H3d9CT8JY.3IdaA1U9fh8OtDswkowQ69kXDrBeYA1YceLrcUfbT3g");
+
+                var response = await client.PostAsync(endpoint, null);
+
+                string json = await response.Content.ReadAsStringAsync();
+
+                _Conversation = JsonConvert.DeserializeObject<Conversation>(json);
+            }
         }
     }
 }
