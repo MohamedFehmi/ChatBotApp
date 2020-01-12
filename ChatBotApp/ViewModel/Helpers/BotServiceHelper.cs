@@ -35,6 +35,11 @@ namespace ChatBotApp.ViewModel.Helpers
             }
         }
 
+        /// <summary>
+        /// Send content as a question to the bot service
+        /// </summary>
+        /// <param name="Message">A string that represents the question of the user</param>
+        /// <returns>A string text that represents the response for the question in argument</returns>
         public async Task SendActivityAsync(string Message)
         {
             string endpoint = $"/v3/directline/conversations/{_Conversation.ConversationId}/activities";
@@ -51,5 +56,7 @@ namespace ChatBotApp.ViewModel.Helpers
                 _Conversation = JsonConvert.DeserializeObject<Conversation>(json);
             }
         }
+
+
     }
 }
