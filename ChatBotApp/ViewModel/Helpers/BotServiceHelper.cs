@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
+using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ChatBotApp.Model;
 using Newtonsoft.Json;
@@ -55,7 +58,8 @@ namespace ChatBotApp.ViewModel.Helpers
                 {
                     From = new ChannelAccount()
                     {
-                        Id = "user1"
+                        Id = "user1",
+                        Name="user1"
                     },
                     Text = message,
                     Type = "message"//writing...
@@ -72,8 +76,42 @@ namespace ChatBotApp.ViewModel.Helpers
                 var obj = JObject.Parse(json);
                 string id = (string)obj.SelectToken("id");
             }
+
+            await ReadMessgaeAsync();
         }
 
+        public async Task ReadMessgaeAsync()
+        {
+            var client = new ClientWebSocket();
+            var cts = new CancellationTokenSource();
 
+            await client.ConnectAsync(new Uri(_Conversation.StreamUrl), cts.Token);
+
+            await Task.Factory.StartNew(async () =>
+            {
+                while (true)
+                {
+                    WebSocketReceiveResult result;
+
+                    var message = new ArraySegment<byte>(new byte[4096]);
+
+                    //read from socket
+                    do
+                    {
+                        result = await client.ReceiveAsync(message, cts.Token);
+
+                        //result is not text
+                        if (result.MessageType != WebSocketMessageType.Text)
+                            break;
+
+                        //result is text, then
+                        var messageBytes = message.Skip(message.Offset).Take(result.Count).ToArray();
+                        string messageJSON = Encoding.UTF8.GetString(messageBytes);
+                    }
+                    //until end of message
+                    while (!result.EndOfMessage);
+                }
+            }, cts.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
     }
 }

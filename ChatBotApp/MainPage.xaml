@@ -23,7 +23,8 @@
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand"
                          Grid.Row="1">
-                <Entry HorizontalOptions="FillAndExpand"
+                <Entry x:Name="questionEntry"
+                       HorizontalOptions="FillAndExpand"
                        Text="{Binding Message, Mode=TwoWay}"/>
                 <Button Text="Send"
                         Command="{Binding SendCommand}"
