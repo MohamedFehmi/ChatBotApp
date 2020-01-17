@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.WebSockets;
@@ -14,6 +15,8 @@ namespace ChatBotApp.ViewModel.Helpers
     public class BotServiceHelper
     {
         public Conversation _Conversation { get; set; }
+
+        public event EventHandler<BotsResponseEventArgs> MessageReceived;
 
         public BotServiceHelper()
         {
@@ -107,6 +110,15 @@ namespace ChatBotApp.ViewModel.Helpers
                         //result is text, then
                         var messageBytes = message.Skip(message.Offset).Take(result.Count).ToArray();
                         string messageJSON = Encoding.UTF8.GetString(messageBytes);
+
+                        BotsResponse botsResponse = JsonConvert.DeserializeObject<BotsResponse>(messageJSON);
+
+                        //create the arguments
+                        var args = new BotsResponseEventArgs();
+                        args.Activities = botsResponse.Activities;
+
+                        //fire up the event
+                        MessageReceived?.Invoke(this, args);
                     }
                     //until end of message
                     while (!result.EndOfMessage);

@@ -33,11 +33,19 @@ namespace ChatBotApp.ViewModel
         {
             botServiceHelper = new BotServiceHelper();
             SendCommand = new Command(SendActivity);
+
+            //subscribe to message received event
+            botServiceHelper.MessageReceived += BotServiceHelper_MessageReceived;
         }
 
         async void SendActivity()
         {
             await botServiceHelper.SendActivityAsync(Message);
+        }
+
+        private void BotServiceHelper_MessageReceived(object sender, Model.BotsResponseEventArgs e)
+        {
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
