@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using ChatBotApp.Model;
 using ChatBotApp.ViewModel.Helpers;
 using Xamarin.Forms;
 
@@ -29,23 +31,39 @@ namespace ChatBotApp.ViewModel
             }
         }
 
+        public ObservableCollection<ChatMessage> Messages { get; set; }
+
         public MainVM()
         {
             botServiceHelper = new BotServiceHelper();
             SendCommand = new Command(SendActivity);
-
+            Messages = new ObservableCollection<ChatMessage>();
             //subscribe to message received event
             botServiceHelper.MessageReceived += BotServiceHelper_MessageReceived;
         }
 
         async void SendActivity()
         {
+            Messages.Add(new ChatMessage
+            {
+                Text = Message,
+                IsInComing = false
+             });
             await botServiceHelper.SendActivityAsync(Message);
         }
 
         private void BotServiceHelper_MessageReceived(object sender, Model.BotsResponseEventArgs e)
         {
-            
+            foreach (var activity in e.Activities)
+            {
+                if (activity.From.Id != "user1")
+                {
+                    Messages.Add(new ChatMessage {
+                        Text = activity.Text,
+                        IsInComing = true
+                    });
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
