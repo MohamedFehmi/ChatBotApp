@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Activity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ChannelAccount.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\BotsResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
