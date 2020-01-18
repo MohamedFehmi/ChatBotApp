@@ -11,8 +11,10 @@ namespace ChatBotApp.ViewModel
     {
         BotServiceHelper botServiceHelper;
 
+        //Commands
         public Command SendCommand { get; set; }
 
+        //Properties
         public string message;
 
         public string Message
