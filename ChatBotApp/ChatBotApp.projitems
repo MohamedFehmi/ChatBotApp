@@ -42,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\CustomControl\OutgoingViewCell.xaml.cs">
       <DependentUpon>OutgoingViewCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\CustomControl\ChatViewCellTemplateSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
