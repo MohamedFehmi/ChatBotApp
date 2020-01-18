@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ChatBotApp.ViewModel;
 using Xamarin.Forms;
 
 namespace ChatBotApp
@@ -13,9 +11,24 @@ namespace ChatBotApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        MainVM mainVM;
+
         public MainPage()
         {
             InitializeComponent();
+
+            mainVM = Resources["vm"] as MainVM;
+
+            mainVM.Messages.CollectionChanged += Messages_CollectionChanged;
+        }
+
+        private void Messages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            var newMessage = mainVM.Messages[mainVM.Messages.Count - 1];
+            Device.BeginInvokeOnMainThread(()=>
+            {
+                chatListView.ScrollTo(newMessage, ScrollToPosition.End, true);
+            });
         }
     }
 }

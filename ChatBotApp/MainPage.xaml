@@ -4,11 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ChatBotApp.ViewModel"
+             xmlns:uc="clr-namespace:ChatBotApp.View.CustomControl"
              mc:Ignorable="d"
              x:Class="ChatBotApp.MainPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:MainVM x:Key="vm" />
+            <uc:ChatViewCellTemplateSelector x:Key="chatTemplateSelector"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -19,7 +21,9 @@
                 <RowDefinition  Height="*"/>
                 <RowDefinition  Height="Auto"/>
             </Grid.RowDefinitions>
-            <ListView Grid.Row="0"
+            <ListView x:Name="chatListView"
+                      Grid.Row="0"
+                      ItemTemplate="{StaticResource chatTemplateSelector}"
                       ItemsSource="{Binding Messages}"
                       HasUnevenRows="True"
                       SeparatorVisibility="None"/>

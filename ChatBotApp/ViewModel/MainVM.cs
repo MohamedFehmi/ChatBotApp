@@ -52,6 +52,7 @@ namespace ChatBotApp.ViewModel
                 IsInComing = false
              });
             await botServiceHelper.SendActivityAsync(Message);
+            Message = string.Empty;
         }
 
         private void BotServiceHelper_MessageReceived(object sender, Model.BotsResponseEventArgs e)
