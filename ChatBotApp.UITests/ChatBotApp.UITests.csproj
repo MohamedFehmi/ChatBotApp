@@ -33,6 +33,9 @@
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Push">
+      <Version>2.6.4</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatBotApp.iOS\ChatBotApp.iOS.csproj">

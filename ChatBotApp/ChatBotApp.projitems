@@ -43,6 +43,7 @@
       <DependentUpon>OutgoingViewCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\CustomControl\ChatViewCellTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppCenterHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
@@ -50,5 +51,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />
     <Folder Include="$(MSBuildThisFileDirectory)View\" />
     <Folder Include="$(MSBuildThisFileDirectory)View\CustomControl\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
   </ItemGroup>
 </Project>
