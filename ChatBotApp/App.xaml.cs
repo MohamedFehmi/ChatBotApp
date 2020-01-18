@@ -3,6 +3,7 @@ using ChatBotApp.Helpers;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Push;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,7 +30,7 @@ namespace ChatBotApp
             string iOSAppSecret = "029038ae-6117-4e21-89c7-8fd71573d27d";
 
             //Set-up the crash Service
-            AppCenter.Start($"android={androidAppSecret};ios={iOSAppSecret}", typeof(Crashes), typeof(Analytics));
+            AppCenter.Start($"android={androidAppSecret};ios={iOSAppSecret}", typeof(Crashes), typeof(Analytics), typeof(Push));
 
             bool didAppCrashed = await Crashes.HasCrashedInLastSessionAsync();
             if (didAppCrashed)

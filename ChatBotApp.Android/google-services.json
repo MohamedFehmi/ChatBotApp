@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "377628028192",
+    "firebase_url": "https://chatbotapp-75f2e.firebaseio.com",
+    "project_id": "chatbotapp-75f2e",
+    "storage_bucket": "chatbotapp-75f2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377628028192:android:27d24526ed84a571b4bb45",
+        "android_client_info": {
+          "package_name": "com.medcorporation.chatbotapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377628028192-pvujobjg1a3fgnc3pt1bm9shhebbsi89.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3f95X0slfQtCdrZQRlUWmK-fBCiffd7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377628028192-pvujobjg1a3fgnc3pt1bm9shhebbsi89.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
